@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Character
+    uniqueID: 1405003605
+    locked: 0
+  - name: Canvas
+    uniqueID: 67860827
+    locked: 0
+  - name: Tapparticle
+    uniqueID: 512180631
+    locked: 0

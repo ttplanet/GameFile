@@ -1,0 +1,9 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "megaira.moc3",
+		"Textures": [
+			"megaira.2048/texture_00.png"
+		]
+	}
+}

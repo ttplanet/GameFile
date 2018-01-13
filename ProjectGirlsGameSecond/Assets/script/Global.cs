@@ -20,9 +20,23 @@ public class Global : MonoBehaviour {
     protected const int menubutton_total = 3;
     #endregion
 
+    #region メイン関係
+    //選択肢ボタンの数
+    protected const int selectbutton_total = 3;
+    #endregion
+
     #region ストーリー関係
     //ストーリーテキストの文字列
 
+    #endregion
+
+
+    #region キャラクター表情関係
+    //デフォルト
+    protected const int default_face = 0;
+    protected const int angry_face = 1;
+    protected const int smile_face = 2;
+    protected const int sick_face = 3;
     #endregion
 
 }

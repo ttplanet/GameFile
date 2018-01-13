@@ -313,6 +313,7 @@
     <None Include="Assets\Live2D\Cubism\Samples\MultipleModels\Description.txt" />
     <None Include="Assets\Live2D\Cubism\Samples\PerspectiveCamera\Description.txt" />
     <None Include="Assets\Live2D\Cubism\Samples\Raycasting\Description.txt" />
+    <None Include="Assets\Resources\story\story0.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

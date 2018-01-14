@@ -11,6 +11,42 @@ public class CharacterFaceChange : Global {
     //番号によって表情変更
     public int face_number=default_face;
 
+    #region 使うパラメーター
+    //横揺れ
+    private CubismParameter ParameterID_rolling;
+    [SerializeField]
+    private string parameter_str_rolling;
+    //目の向き
+    private CubismParameter ParameterID_orientation;
+    [SerializeField]
+    private string parameter_str_orientation;
+    //左目
+    private CubismParameter ParameterID_lefteye;
+    [SerializeField]
+    private string parameter_str_lefteye;
+    //右目
+    private CubismParameter ParameterID_righteye;
+    [SerializeField]
+    private string parameter_str_righteye;
+    //左眉
+    private CubismParameter ParameterID_lefteyebrow;
+    [SerializeField]
+    private string parameter_str_lefteyebrow;
+    //右眉
+    private CubismParameter ParameterID_righteyebrow;
+    [SerializeField]
+    private string parameter_str_righteyebrow;
+    //口の空き具合１
+    private CubismParameter ParameterID_mouse_x;
+    [SerializeField]
+    private string parameter_str_mouseX;
+    //口の空き具合２
+    private CubismParameter ParameterID_mouse_y;
+    [SerializeField]
+    private string parameter_str_mouseY;
+
+    #endregion
+
     //タップされた時の判定スイッチ
     private bool tapmove_sw;
     private bool add_sw;
@@ -23,6 +59,26 @@ public class CharacterFaceChange : Global {
 	// Use this for initialization
 	private void Start () {
         _model = this.FindCubismModel();
+
+        #region パラメーター登録
+        //横揺れ
+        ParameterID_rolling     = _model.Parameters.FindById(parameter_str_rolling);
+        //目の向き
+        ParameterID_orientation = _model.Parameters.FindById(parameter_str_orientation);
+        //左目
+        ParameterID_lefteye     = _model.Parameters.FindById(parameter_str_lefteye);
+        //右目
+        ParameterID_righteye    = _model.Parameters.FindById(parameter_str_righteye);
+        //左眉
+        ParameterID_lefteyebrow = _model.Parameters.FindById(parameter_str_lefteyebrow);
+        //右眉
+        ParameterID_righteyebrow    = _model.Parameters.FindById(parameter_str_righteyebrow);
+        //口の空き具合１
+        ParameterID_mouse_x     = _model.Parameters.FindById(parameter_str_mouseX);
+        //口の空き具合２
+        ParameterID_mouse_y     = _model.Parameters.FindById(parameter_str_mouseY);
+        #endregion
+
         tapmove_sw = false;
         add_sw = false;
         defaultmove_sw = false;
@@ -106,9 +162,9 @@ public class CharacterFaceChange : Global {
                 tapmove_t -= (Time.deltaTime * 3f);
             }
             //横揺れ
-            _model.Parameters[7].Value = tapmove_t;
+            ParameterID_rolling.Value = tapmove_t;
             //目の向き
-            _model.Parameters[2].Value = -tapmove_t;
+            ParameterID_orientation.Value = -tapmove_t;
 
             #endregion
         }
@@ -145,9 +201,9 @@ public class CharacterFaceChange : Global {
 
             
             //横揺れ
-            _model.Parameters[7].Value = default_t;
+            ParameterID_rolling.Value = default_t;
             //目の向き
-            _model.Parameters[2].Value = -default_t;
+            ParameterID_orientation.Value = -default_t;
             #endregion
         }
                         
@@ -157,14 +213,14 @@ public class CharacterFaceChange : Global {
     void DefaultFace()
     {
         //目の開き具合
-        _model.Parameters[0].Value = 1;
-        _model.Parameters[1].Value = 1;
-        //眉毛の下がり具合
-        _model.Parameters[3].Value = 0;
-        _model.Parameters[4].Value = 0;
+        ParameterID_lefteye.Value = 1;
+        ParameterID_righteye.Value = 1;
+        //眉毛の下がり具合       
+        ParameterID_lefteyebrow.Value = 0;
+        ParameterID_righteyebrow.Value = 0;
         //口の空き具合
-        _model.Parameters[5].Value = 0;
-        _model.Parameters[6].Value = 0.5f;
+        ParameterID_mouse_x.Value = 0;
+        ParameterID_mouse_y.Value = 0.5f;
 
 
 
@@ -173,14 +229,14 @@ public class CharacterFaceChange : Global {
     void AngryFace()
     {
         //目の開き具合
-        _model.Parameters[0].Value = 0.5f;
-        _model.Parameters[1].Value = 0.5f;
+        ParameterID_lefteye.Value = 0.5f;
+        ParameterID_righteye.Value = 0.5f;
         //眉毛の下がり具合
-        _model.Parameters[3].Value = -1;
-        _model.Parameters[4].Value = -1;
+        ParameterID_lefteyebrow.Value = -1;
+        ParameterID_righteyebrow.Value = -1;
         //口の空き具合
-        _model.Parameters[5].Value = -1;
-        _model.Parameters[6].Value = 1;
+        ParameterID_mouse_x.Value = -1;
+        ParameterID_mouse_y.Value = 1;
 
     }
     //笑顔
@@ -194,7 +250,7 @@ public class CharacterFaceChange : Global {
         _model.Parameters[4].Value = 1;
         //口の空き具合
         _model.Parameters[5].Value = 1;
-        _model.Parameters[6].Value = 1;
+        ParameterID_mouse_y.Value = 1;
     }
     //鬱顔
     void SickFace()
@@ -207,7 +263,7 @@ public class CharacterFaceChange : Global {
         _model.Parameters[4].Value = 1;
         //口の空き具合
         _model.Parameters[5].Value = 1;
-        _model.Parameters[6].Value = 1;
+        ParameterID_mouse_y.Value = 1;
     }
     //一定間隔
     IEnumerator wait()
